@@ -18,6 +18,11 @@ def driver(request):
 
 
 @pytest.fixture
+def current_url(driver):
+    return driver.current_url
+
+
+@pytest.fixture
 def user_token(new_user):
     return new_user["token"]
 

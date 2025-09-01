@@ -1,20 +1,19 @@
 from locators.feed_page_locators import FeedPageLocators
+from pages.base_page import BasePage
+from url import FEED_PAGE_URL
 
 
-class FeedPage:
-    URL = "https://stellarburgers.nomoreparties.site/feed"
-
+class FeedPage(BasePage):
     def __init__(self, driver):
-        self.driver = driver
-
-    def open(self):
-        self.driver.get(self.URL)
+        super().__init__(driver, FEED_PAGE_URL)
 
     def get_total_orders(self):
-        return int(self.driver.find_element(*FeedPageLocators.TOTAL_ORDERS).text)
+        return int(self.get_text(FeedPageLocators.TOTAL_ORDERS))
 
     def get_today_orders(self):
-        return int(self.driver.find_element(*FeedPageLocators.TODAY_ORDERS).text)
+        return int(self.get_text(FeedPageLocators.TODAY_ORDERS))
 
     def get_in_progress_orders(self):
+        elements = self.wait_for_element(FeedPageLocators.IN_PROGRESS_ORDERS)
         return [el.text for el in self.driver.find_elements(*FeedPageLocators.IN_PROGRESS_ORDERS)]
+    
