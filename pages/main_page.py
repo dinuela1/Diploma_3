@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 class MainPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver, MAIN_PAGE_URL)
+
     def click_ingredient(self):
         self.click(MainPageLocators.INGREDIENT)
 

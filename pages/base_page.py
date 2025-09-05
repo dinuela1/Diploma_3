@@ -40,3 +40,10 @@ class BasePage:
 
     def click_logo(self):
         self.click(BasePageLocators.HEADER_LOGO)
+
+    def get_elements(self, locator):
+        self.wait_for_element(locator)
+        return self.driver.find_elements(*locator)
+
+    def current_url(self):
+        return self.driver.current_url

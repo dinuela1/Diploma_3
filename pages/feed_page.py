@@ -14,6 +14,5 @@ class FeedPage(BasePage):
         return int(self.get_text(FeedPageLocators.TODAY_ORDERS))
 
     def get_in_progress_orders(self):
-        elements = self.wait_for_element(FeedPageLocators.IN_PROGRESS_ORDERS)
-        return [el.text for el in self.driver.find_elements(*FeedPageLocators.IN_PROGRESS_ORDERS)]
-    
+        elements = self.get_elements(FeedPageLocators.IN_PROGRESS_ORDERS)
+        return [el.text for el in elements]
